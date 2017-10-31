@@ -6,7 +6,8 @@ def eachFile(filepath):
     for allDir in pathDir:
         child = os.path.join('%s%s' %(filepath, allDir))
         filename1 = child[34:]
-        createfile1=open("/home/yuanchunyu/dataVis/td1/"+filename1,'a+')
+        createfile1=open("/Users/Moti/Documents/GitHub/dataVis/td2/"+filename1,'a+')
+        createfile1.writelines('%s' % ("date count"))
         fd=open(child,'r')
         for line in fd.readlines()[9132:14976]:
             createfile1.writelines('%s' % (line))
@@ -18,6 +19,6 @@ def eachFile(filepath):
  
 
 if __name__=='__main__':
-    filePath ="/home/yuanchunyu/dataVis/td/"
+    filePath ="/Users/Moti/Documents/GitHub/dataVis/td/"
     eachFile(filePath)
     
