@@ -24,38 +24,38 @@ def eachFile(filepath,folder):
  
 
 if __name__=='__main__':
-    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tdc1/"
-    folder="tdc1n"
+    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tsc1/"
+    folder="tsc1n"
     eachFile(filePath,folder)
-    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tdc2/"
-    folder="tdc2n"
+    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tsc2/"
+    folder="tsc2n"
     eachFile(filePath,folder)
-    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tdc3/"
-    folder="tdc3n"
+    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tsc3/"
+    folder="tsc3n"
     eachFile(filePath,folder)
-    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tdc4/"
-    folder="tdc4n"
+    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tsc4/"
+    folder="tsc4n"
     eachFile(filePath,folder)
-    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tdc5/"
+    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tsc5/"
     folder="tdc5n"
     eachFile(filePath,folder)
-    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tdc6/"
-    folder="tdc6n"
+    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tsc6/"
+    folder="tsc6n"
     eachFile(filePath,folder)
-    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tdf1/"
-    folder="tdf1n"
+    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tsf1/"
+    folder="tsf1n"
     eachFile(filePath,folder)
-    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tdf2/"
-    folder="tdf2n"
+    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tsf2/"
+    folder="tsf2n"
     eachFile(filePath,folder)
-    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tdf3/"
-    folder="tdf3n"
+    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tsf3/"
+    folder="tsf3n"
     eachFile(filePath,folder)
 
-    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tdf4/"
-    folder="tdf4n"
+    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tsf4/"
+    folder="tsf4n"
     eachFile(filePath,folder)
-    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tdf5/"
-    folder="tdf5n"
+    filePath ="/home/yuanchunyu/dataVis1/chooseFile/tsf5/"
+    folder="tsf5n"
     eachFile(filePath,folder)
     
