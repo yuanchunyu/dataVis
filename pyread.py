@@ -9,9 +9,9 @@ def eachFile(filepath):
         filename1 = child[29:]
         #print filename1
         #print child
-        createfile1=open("/home/yuanchunyu/dataVis1/ts1/"+filename1,'a+')
+        createfile1=open("/home/yuanchunyu/dataVis1/ts_5years/"+filename1,'a+')
         fd=open(child,'r')
-        for line in fd.readlines()[9132:14976]:
+        for line in fd.readlines()[9132:11324]:
             createfile1.writelines('%s' % (line))
         fd.close()
         createfile1.close()
