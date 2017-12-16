@@ -21,4 +21,5 @@ def eachFile(filepath):
 if __name__=='__main__':
     filePath ="/Users/Moti/Documents/GitHub/dataVis/td/"
     eachFile(filePath)
+//
     
