@@ -1,0 +1,7 @@
+,Unnamed: 0,Unnamed: 0.1,place,cooling,lon,fuel,lat,state,dischargefile,f,c
+0,0,273,1735,3,-105.475,2,44.275,WY,785_650.tsv,Coal,ST-DC
+1,1,328,1798,3,-105.375,2,44.275,WY,785_652.tsv,Coal,ST-DC
+2,2,1003,77002,3,-108.475,2,45.825,MT,816_590.tsv,Coal,ST-DC
+3,3,1025,77325,3,-122.125,1,39.075,CA,681_317.tsv,Bio-power,ST-DC
+4,4,1026,77328,3,-105.425,2,44.275,WY,785_651.tsv,Coal,ST-DC
+5,5,1095,587961,3,-105.375,2,44.325,WY,786_652.tsv,Coal,ST-DC
