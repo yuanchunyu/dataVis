@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<style type="text/css">
+
+
+
+
+
+/* Style for Custom Tooltip */
+div.tooltip {   
+ 	position: absolute;           
+	text-align: left-side;           
+	width: 160px;                  
+	height: 180px;                
+	padding: 2px;             
+	font: 8px sans-serif;        
+	background: white;   
+	border: 0px;      
+	border-radius: 8px;           
+	pointer-events: none;         
+}
+        
+/* Legend Font Style 
+body {
+	font: 11px sans-serif;
+}
+        
+ Legend Position Style 
+.legend {
+	position:absolute;
+	left:1000px;
+	top:350px;
+}
+*/
+</style>
+</head>
+<body>
+<a href="index05y.html"><button type="button"  style="width:160px;margin-top:0px;margin-left:50px;">KMean 6 years </button></a>
+<a href="../kmeanmajor.html"><button type="button"  style="width:160px;margin-top:0px;">Back</button></a>
+
+<div class='my-legend'>
+<div class='legend-title'>6 years KMean k=6</div>
+<div class='legend-scale'>
+  <ul class='legend-labels'>
+    <li><span style='background:#008000;'></span> <a href="index051y.html"><button type="button"  style="width:120px;margin-top:0px;">1 Cluster</button></a></li>
+    <li><span style='background:#CD5C5C;'></span> <a href="index052y.html"><button type="button"  style="width:120px;margin-top:0px;">2 Cluster</button></a></li>
+        <li><span style='background:#FFA07A;' ></span> <a href="index053y.html"><button type="button"  style="width:120px;margin-top:0px;">3 Cluster</button></a></li>
+            <li><span style='background:#8B0000;'></span> <a href="index054y.html"><button type="button"  style="width:120px;margin-top:0px;">4 Cluster</button></a></li>
+                <li><span style='background:#FF1493;'></span> <a href="index055y.html"><button type="button"  style="width:120px;margin-top:0px;">5 Cluster</button></a></li>
+                  
+                                                                        <li><span style='background:#6A5ACD;'></span> <a href="index056y.html"><button type="button"  style="width:120px;margin-top:0px;">6 Cluster</button></a></li>
+  </ul>
+</div>
+
+
+
+<style type='text/css'>
+  .my-legend .legend-title {
+    text-align: center;
+	margin-left: 20px;
+	margin-top:10px;
+    margin-bottom: 1px;
+    font-weight: bold;
+    font-size: 120%;
+    }
+  .my-legend .legend-scale ul {
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 0;
+    float: left;
+    list-style: none;
+    }
+  .my-legend .legend-scale ul li {
+    font-size: 100%;
+    float:left;
+	margin-top:25px;
+    margin-left: 100;
+    line-height: 8px;
+    margin-bottom: 5px;
+    }
+  .my-legend ul.legend-labels li span {
+    display: block;
+    float: left;
+    height: 16px;
+    width: 16px;
+    margin-right: 5px;
+    margin-left: 25px;
+    border: 1px solid #999;
+    }
+
+</style>
+<script type="text/javascript">
+
+
+
+		
+//Width and height of map
+var width = 2000;
+var height = 860;
+
+// D3 Projection
+var projection = d3.geo.albersUsa()
+				   .translate([width/2, height/2])    // translate to center of screen
+				   .scale([1800]);          // scale things down so see entire US
+        
+// Define path generator
+var path = d3.geo.path()               // path generator that will convert GeoJSON to SVG paths
+		  	 .projection(projection);  // tell path generator to use albersUsa projection
+
+		
+// Define linear scale for output
+var color = d3.scale.linear()
+			  .range(["rgb(213,222,217)","rgb(69,173,168)","rgb(84,36,55)","rgb(217,91,67)"]);
+
+
+
+//Create SVG element and append map to the SVG
+var svg = d3.select("body")
+			.append("svg")
+			.attr("width", width)
+			.attr("height", height);
+        
+// Append Div for tooltip to SVG
+var div = d3.select("body")
+		    .append("div")   
+    		.attr("class", "tooltip")               
+    		.style("opacity", 0);
+
+// Load in my states data!
+d3.csv("stateslived1.csv", function(data) {
+//color.domain([0,1,2,3]); // setting the range of the input data
+
+// Load GeoJSON data and merge with states data
+d3.json("us-states.json", function(json) {
+
+// Loop through each state data value in the .csv file
+for (var i = 0; i < data.length; i++) {
+
+	// Grab State Name
+	var dataState = data[i].state;
+
+	// Grab data value 
+	var dataValue = data[i].visited;
+
+	// Find the corresponding state inside the GeoJSON
+	for (var j = 0; j < json.features.length; j++)  {
+		var jsonState = json.features[j].properties.name;
+
+		if (dataState == jsonState) {
+
+		// Copy the data value into the JSON
+		json.features[j].properties.visited = dataValue; 
+
+		// Stop looking through the JSON
+		break;
+		}
+	}
+}
+		
+// Bind the data to the SVG and create one path per GeoJSON feature
+svg.selectAll("path")
+	.data(json.features)
+	.enter()
+	.append("path")
+	.attr("d", path)
+	.style("stroke", "#fff")
+	.style("stroke-width", "1")
+	.style("fill", function(d) {
+
+	// Get data value
+	var value = d.properties.visited;
+
+	if (value) {
+	//If value exists…
+    return "rgb(213,222,217)";
+	} else {
+	//If value is undefined…
+	return "rgb(213,222,217)";
+	}
+});
+
+		 
+// Map the powerplant 
+d3.csv("k05idc1.csv", function(data) {
+
+svg.selectAll("circle")
+	.data(data)
+	.enter()
+	.append("circle")
+	.attr("cx", function(d) {
+		return projection([d.lon, d.lat])[0];
+	})
+	.attr("cy", function(d) {
+		return projection([d.lon, d.lat])[1];
+	})
+	.attr("r", function(d) {
+		return Math.sqrt(0.5) * 8;
+	})
+		.style("fill", "IndianRed")	
+		.style("opacity", 0.85)	
+
+
+	.on("mouseover", function(d) {      
+    	div.transition()        
+      	   .duration(200)      
+           .style("opacity", .9);      
+           div.html("Power_ID: "+d.place+"<br/>"+"<br/>"+"Fuel: "+d.f+"<br/>"+"<br/>"+"Cooling: "+d.c+"<br/>"+"<br/>"+"State: "+d.state)
+           .style("font-size", "15px")
+           .style("left", (d3.event.pageX) + "px")     
+           .style("top", (d3.event.pageY - 28) + "px");    
+           
+	})   
+  
+
+    // fade out tooltip on mouse out               
+    .on("mouseout", function(d) {       
+        div.transition()        
+           .duration(500)      
+           .style("opacity", 0);   
+    });
+});  
+        
+
+var legend = d3.select("body").append("svg")
+      			.attr("class", "legend")
+     			.attr("width", 140)
+    			.attr("height", 200)
+   				.selectAll("g")
+   				.data(color.domain().slice().reverse())
+   				.enter()
+   				.append("g")
+     			.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+  	
+
+  	legend.append("text")
+  		  .data(legendText)
+      	  .attr("x", 24)
+      	  .attr("y", 9)
+      	  .attr("dy", ".35em")
+      	  .text(function(d) { return d; });
+	});
+
+});
+</script>
+</body>
+</html>
+
+
